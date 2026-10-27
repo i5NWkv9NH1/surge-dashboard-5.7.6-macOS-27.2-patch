@@ -28,7 +28,7 @@ AppKit +[NSWindowSectionController leadingPartitionPositionForItem:inWindow:]
 
 新版系统的 AppKit 在初始化带有工具栏分割线的窗口时，会向控制器强行查询私有分栏信息（`_leadingItemAtDividerIndex:` 与 `_trailingItemAtDividerIndex:`）。Surge 5.7.6 2838 编译时的旧版 NIB 界面对象缺少这些方法，直接导致异常抛出。
 
-本项目编译一个轻量级的动态库（`libfix_dashboard.dylib`），在 Dashboard 启动早期直接向根类 `NSObject` 动态注入对应的兜底安全方法，使 AppKit 正常完成窗口排版与渲染，彻底绕过闪退。
+编译一个轻量级的动态库（`libfix_dashboard.dylib`），在 Surge Dashboard 启动早期直接向根类 `NSObject` 动态注入对应的兜底安全方法，使 AppKit 正常完成窗口排版与渲染，彻底绕过闪退。
 
 ---
 
@@ -59,4 +59,4 @@ chmod +x patch.sh
 ```
 
 _注：如果因权限限制提示 `Permission denied`，请使用 `sudo ./patch.sh` 执行。_
-# surge-dashboard-5.7.6-macOS-27.2-patch
+
